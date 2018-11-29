@@ -27,7 +27,6 @@ import javax.swing.JRadioButton;
 import javax.swing.AbstractAction;
 import javax.swing.ButtonGroup;
 import javax.swing.JFormattedTextField;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
 
 
 
@@ -274,7 +273,7 @@ public class empDBWindow {
 							textFieldEvalEmpID.setText(textFieldEmpID.getText());
 							isEmpEval(Integer.parseInt(textFieldEmpID.getText()));
 							displayEmpEvaluations(tempEvalList, textAreaEvalList);
-							System.out.println(tempEvalList.size());
+							//System.out.println(tempEvalList.size());
 							for (Evaluation eval: tempEvalList ) {
 								averagePerformance += (double) eval.perf();
 								averageAttitude += (double) eval.attit();
@@ -918,7 +917,7 @@ public class empDBWindow {
 								buttonGroupAttitude.getSelection().getActionCommand() + "," + 
 								buttonGroupAttire.getSelection().getActionCommand() + "," + 
 								textFieldAddEvalComments.getText().replace(",", "") + ",";
-						System.out.println("Eval Added: " + line + "\n");
+						//System.out.println("Eval Added: " + line + "\n");
 						tempEvalList.add(new Evaluation(line));
 						textAreaAddEval.append(line + "\n");
 						textFieldAddEvalEmpID.setText("");
@@ -942,7 +941,7 @@ public class empDBWindow {
 
 				private boolean isDuplicateEval(int text) {
 					for (Evaluation obj: tempEvalList) {
-						System.out.println("Previously Added Eval: " + obj.toString() + "\n" + text + "\n");
+						//System.out.println("Previously Added Eval: " + obj.toString() + "\n" + text + "\n");
 						if ( obj.empNum == text ) {
 							return true;
 						}
@@ -1127,7 +1126,7 @@ public class empDBWindow {
 		for (int i = 0; i < list.size(); i++) {
 			if ( list.get(i).isPosition(position) ) {
 				textAreaPosList.append(list.get(i).print() + "\n");
-				System.out.println(list.get(i).print());
+				//System.out.println(list.get(i).print());
 				tempEmpList.add(list.get(i));
 			}	
 		}
@@ -1146,7 +1145,7 @@ public class empDBWindow {
 			PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, false)));
 			if ( fileName == empFileName	)
 				out.println("// Emp ID, Name, Phone #, Shirt Size, A U, A TT, A Sup, A Sec, A R, A BC, CC TT, CC Sup,CC U, CC Sec, I Sup, I U, I TT, I Sec,I SD, P S, P C, REC, Lincoln Center, WSU, EWU,Seattle, Northern Quest, Mill Bay,");
-			System.out.println(list.get(i).toString());
+			//System.out.println(list.get(i).toString());
 			out.println(list.get(i).toString());
 			
 			out.close();
@@ -1154,7 +1153,7 @@ public class empDBWindow {
 			out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
 			
 			for ( i = 1; i < list.size(); i++) {
-				System.out.println(list.get(i).toString());
+				//System.out.println(list.get(i).toString());
 				out.println(list.get(i).toString());
 			}
 			
