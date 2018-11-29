@@ -1,25 +1,32 @@
-
+import java.util.*;
 
 public class Employee {
 	public final static String[] SIZES = { "Small", "Medium", "Large", "Extra Large", "2XL", "3XL", "4XL" };
 	int empNum;
 	String name;
-	Boolean usher;
-	Boolean ticketTaker;
+	List<Integer> positions = new ArrayList<Integer>();
+	Boolean usherA;
+	Boolean ticketTakerA;
 	String telNum;
 	int	 shirtSize;
 	
 	
-	public Employee (String string) {
+	public Employee (String string, int numPos) {
+		int i = 0, j = 0;
+		
+		for ( int counter = 0; counter < numPos; counter++ ) 
+			positions.add(0);
 		String[] tokens = string.split(",");
-		empNum = Integer.parseInt(tokens[0]);
-		name = tokens[1];
-		telNum = tokens[2];
-		shirtSize = Integer.parseInt(tokens[3]);
-		updateUsher( Integer.parseInt(tokens[4]) != 0 );
-		updateTicketTaker( Integer.parseInt(tokens[5]) != 0 );
+		empNum = Integer.parseInt(tokens[i++]);
+		name = tokens[i++];
+		telNum = tokens[i++];
+		shirtSize = Integer.parseInt(tokens[i++]);
+		while ( i < tokens.length ) {
+				positions.set(j, Integer.parseInt(tokens[i++]));
+				j++;
+		}
 	}
-	
+
 	public String name () {
 		return name;
 	}
@@ -28,43 +35,20 @@ public class Employee {
 		return empNum;
 	}
 	
-	void updateUsher(boolean bool) {
-			usher = bool;
-		
-	}
-	
-	public boolean isPosition (String position) {
-		position = position.toLowerCase();
-		switch (position) {
-			case "usher":
-				return usher;
-			case "ticket taker":
-				return ticketTaker;
-		}
-		return false; 
-	}
-	
-	void updateTicketTaker(boolean bool) {
-			ticketTaker = bool;
+	public boolean isPosition (int position) {
+		return positions.get(position) != 0;
 	}
 	
 	public String print(){
-		return (name + ": " + telNum);
+		return (empNum + ": " + name + ": " + telNum);
 	}
 	
 	public String toString() {
 		String line = null;
 		line = empNum + "," + name + "," + telNum + "," + shirtSize + ",";
-		if ( usher )
-			line += 1;
-		else
-			line += 0;
-		line += ",";
-		if ( ticketTaker )
-			line += 1;
-		else
-			line += 0;
-		line += ",";
+		for (int i = 0; i < positions.size(); i++) {
+			line += positions.get(i) + ",";
+		}
 		
 		return line;
 	}
@@ -78,13 +62,16 @@ public class Employee {
 	}
 
 	public void updateEmp(String string) {
+		int i = 0, j = 0;
 		String[] tokens = string.split(",");
-		empNum = Integer.parseInt(tokens[0]);
-		name = tokens[1];
-		telNum = tokens[2];
-		shirtSize = Integer.parseInt(tokens[3]);
-		updateUsher( Integer.parseInt(tokens[4]) != 0 );
-		updateTicketTaker( Integer.parseInt(tokens[5]) != 0 );
+		empNum = Integer.parseInt(tokens[i++]);
+		name = tokens[i++];
+		telNum = tokens[i++];
+		shirtSize = Integer.parseInt(tokens[i++]);
+		while ( i < tokens.length ) {
+			positions.set(j, Integer.parseInt(tokens[i++]));
+			j++;
+		}
 	}
 
 	public int returnShirtSize() {
