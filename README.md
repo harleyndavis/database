@@ -3,7 +3,7 @@ Proof of concept for a simple database program for keeping track of employee dat
 trained in a specific position, and their contact information. Also allows for ease of adding/changing information. And to be able to add 
 employee evaluations. 
 
-Was developed with a small branch of a event staffing company. As a replacement for keeping track
+Was developed with a small branch of a event staffing company in mind. As a replacement for keeping track
 of everything in excel sheets. Currently everything is stored in CSV, as it was easy to use as proof
 of concept. 
 
